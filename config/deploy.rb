@@ -97,58 +97,58 @@ namespace :deploy do
   after  :finishing,    :restart
 end
 
-#set :rvm_path, '/usr/local/rvm/scripts/rvm'S
+set :rvm_path, '~/.rvm/scripts/rvm'
 
 
-#task :remote_environment do
+task :remote_environment do
   # If you're using rbenv, use this to load the rbenv environment.
   # Be sure to commit your .ruby-version or .rbenv-version to your repository.
  # invoke :'rbenv:load'
 
- #invoke :'rvm:use', 'ruby-3.0.0@panorama'
+ invoke :'rvm:use', 'ruby-3.0.0@panorama'
 
   # For those using RVM, use this to load an RVM version@gemset.
   # invoke :'rvm:use', 'ruby-1.9.3-p125@default'
 
 
 
-#end
+end
 
 # Put any custom commands you need to run at setup
 # All paths in `shared_dirs` and `shared_paths` will be created on their own.
-#task :setup do
+task :setup do
   # command %{rbenv install 2.3.0 --skip-existing}
-#end
+end
 
-#desc "Deploys the current version to the server."
-#task :deploy do
+desc "Deploys the current version to the server."
+task :deploy do
   # uncomment this line to make sure you pushed your local branch to the remote origin
   # invoke :'git:ensure_pushed'
-  #deploy do
+  deploy do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
 
     # 1 - pull application server
-    #invoke :'git:clone'
+    invoke :'git:clone'
 
     # 2 - criar links compartilhados
-    #invoke :'deploy:link_shared_paths'
+    invoke :'deploy:link_shared_paths'
 
     # 3 - bundle install
-    #invoke :'bundle:install'
+    invoke :'bundle:install'
 
 
     # 4 - rake db migrate
-    #invoke :'rails:db_migrate'
+    invoke :'rails:db_migrate'
 
     # 5 - precompile assets
-    #invoke :'rails:assets_precompile'
+    invoke :'rails:assets_precompile'
 
  
     # 6 - deploy clean up old releases
-    #invoke :'deploy:cleanup'
+    invoke :'deploy:cleanup'
 
-    #on :launch do
+    on :launch do
       
       # invoke :'puma:phased_restart'
 
@@ -160,14 +160,14 @@ end
       # #   command 'touch tmp/restart.txt'
       # # end
 
-    #end
+    end
 
 
-  #end
+  end
 
   # you can use `run :local` to run tasks on local machine before of after the deploy scripts
   # run(:local){ say 'done' }
-#end
+end
 
 # For help in making your deploy script, see the Mina documentation:
 #
